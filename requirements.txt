@@ -1,9 +1,7 @@
 # ── Core ──────────────────────────────────────────────────────────────────
 ultralytics>=8.0.0          # YOLOv8 (auto-downloads yolov8n.pt / yolov8s.pt)
 opencv-python>=4.8.0        # Video capture & annotation
-numpy>=1.24.0               # Array math
-pandas>=2.0.0               # Log aggregation
-matplotlib>=3.7.0           # Analytics charts
+
 
 # ── GPU support (optional) ─────────────────────────────────────────────────
 # If you have an NVIDIA GPU, install PyTorch with CUDA:
