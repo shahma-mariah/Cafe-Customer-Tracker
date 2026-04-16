@@ -1,5 +1,7 @@
 import cv2
 from ultralytics import YOLO
+import csv
+import time
 
 # Load the Nano model (fastest for CPU)
 model = YOLO('yolov8n.pt') 
@@ -18,6 +20,13 @@ LINE_Y = 0.7
 
 counter = 0
 tracked_ids = set()
+
+# Create CSV file
+csv_file = open("customer_count.csv", mode="w", newline="")
+csv_writer = csv.writer(csv_file)
+
+# Header
+csv_writer.writerow(["Person_ID", "Timestamp", "Total_Count"])
 
 while cap.isOpened():
     success, frame = cap.read()
@@ -39,10 +48,12 @@ while cap.isOpened():
             x1, y1, x2, y2 = box
             cx, cy = int((x1 + x2) / 2), int(y2) # Track the feet
 
-            # Crossing Logic
             if cy > line_pos and obj_id not in tracked_ids:
                 tracked_ids.add(obj_id)
                 counter += 1
+                
+                timestamp = time.strftime("%Y-%m-%d %H:%M:%S")
+                csv_writer.writerow([obj_id, timestamp, counter])
 
             # Visuals
             cv2.rectangle(frame, (int(x1), int(y1)), (int(x2), int(y2)), (0, 255, 0), 2)
@@ -55,4 +66,5 @@ while cap.isOpened():
     if cv2.waitKey(1) & 0xFF == ord('q'): break
 
 cap.release()
+csv_file.close()
 cv2.destroyAllWindows()
