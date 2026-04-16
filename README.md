@@ -1,6 +1,6 @@
-# 🏪 Cafe Footfall Tracker
+# 🏪 Cafe Customer Tracker
 
-A lightweight computer vision system that uses a CCTV camera feed to detect people entering a cafe, log entry events, and analyse peak hours. Built as an internship project demonstrating real-world applied ML on edge hardware.
+A lightweight computer vision system that uses a CCTV camera feed to detect people entering a cafe, log entry events and analyse peak hours. Built as an internship project demonstrating real-world applied ML on edge hardware.
 
 ---
 
